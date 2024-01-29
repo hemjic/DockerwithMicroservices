@@ -1,0 +1,34 @@
+version: '3.4'
+
+services:
+  gateway:
+    container_name: api-gateway
+    image: gateway
+    ports:
+      - "8039:80"
+    build:
+      context: ./Gateway
+      dockerfile: ./Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=develpoment
+      - ASPNETCORE_URLS=http://*:80
+
+  service1:
+    container_name: api-service1
+    image: service1
+    build:
+      context: ./service1
+      dockerfile: ./Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=develpoment
+      - ASPNETCORE_URLS=http://*:80
+   
+  service2:
+    container_name: api-service2
+    image: service2
+    build:
+      context: ./service2
+      dockerfile: ./Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=develpoment
+      - ASPNETCORE_URLS=http://*:80
